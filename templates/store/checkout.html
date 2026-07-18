@@ -14,7 +14,7 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-4">Billing Address</h4>
-        <form action="" method="POST">
+        <form action="{% url 'place_order' %}" method="POST">
             {% csrf_token %}
             <div class="form-row">
                 <div class="col form-group">
@@ -367,8 +367,8 @@
 	</td>
 	<td>
 		<div class="price-wrap">
-			<var class="price">₹{{cart_item.sub_total}}</var> <!-- This is for the sub-total of particular item based on its quantity -->
-			<small class="text-muted"> ₹{{cart_item.product.price}} each </small> <!--This shows the actual price of single item -->
+			<var class="price">${{cart_item.sub_total}}</var> <!-- This is for the sub-total of particular item based on its quantity -->
+			<small class="text-muted"> ${{cart_item.product.price}} each </small> <!--This shows the actual price of single item -->
 		</div> <!-- price-wrap .// -->
 	</td>
 
