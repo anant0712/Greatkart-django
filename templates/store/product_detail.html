@@ -76,10 +76,47 @@
 <div class="row">
 			<div class="col-md-9">
 
-	<header class="section-heading">
-		<h3>Customer Reviews </h3>
 
-	</header>
+          <form action="{% url 'submit_review' single_product.id %}" method="POST">
+              {% csrf_token %}
+              <h5>Write Your Review</h5>
+              <div>
+                  <label>How do you rate this product?</label>
+                  <br>
+                  <div class="rate">
+                      <input type="radio" name="rate5" id="star10"  value="5" required /><label for="star10" title="5"></label>
+                      <input type="radio" name="rate5" id="star9"  value="4.5" required /><label for="star9" title="4.5" class="half"></label>
+                      <input type="radio" name="rate5" id="star8"  value="4" required /><label for="star8" title="4"></label>
+                      <input type="radio" name="rate5" id="star7"  value="3.5" required /><label for="star7" title="3.5" class="half"></label>
+                      <input type="radio" name="rate5" id="star6"  value="3" required /><label for="star6" title="3"></label>
+                      <input type="radio" name="rate5" id="star5"  value="2.5" required /><label for="star5" title="2.5" class="half"></label>
+                      <input type="radio" name="rate5" id="star4"  value="2" required /><label for="star4" title="2"></label>
+                      <input type="radio" name="rate5" id="star3"  value="1.5" required /><label for="star3" title="1.5" class="half"></label>
+                      <input type="radio" name="rate5" id="star2"  value="1" required /><label for="star2" title="1"></label>
+                      <input type="radio" name="rate5" id="star1"  value="0.5" required /><label for="star1" title="0.5" class="half"></label>
+                  </div>
+                  <br>
+                  Review Title:
+                  <input type="text" class="form-control" name="subject">
+                  <br>
+                  Review:
+                  <br>
+                  <textarea name="review" rows="4" ></textarea>
+                  <br>
+                  {% if user.is_authenticated %}
+                  <input type="submit" value="Submit Review" class="btn btn-primary">
+                  {% else %}
+                  <p>You must be logged in to post a review.<a href="{% url 'login' %}">Login now</a></p>
+
+                  {% endif %}
+              </div>
+              {% include 'includes/alerts.html' %}
+          </form>
+
+          <header class="section-heading">
+              <h3>Customer Reviews </h3>
+
+	    </header>
 
 	<article class="box mb-3">
 		<div class="icontext w-100">

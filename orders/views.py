@@ -159,7 +159,7 @@ def order_complete(request):
 
         subtotal = 0
         for i in ordered_products:
-            subtotal = i.product.price * i.quantity
+            subtotal += i.product_price * i.quantity
 
         context = {
             'order': order,
