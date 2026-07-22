@@ -1,27 +1,33 @@
-# GreatKart 🛒
+<h1>GreatKart 🛒</h1>
 GreatKart is a fully functional, feature-rich e-commerce web application built using Python and Django. It provides a complete shopping experience from product browsing and cart management to secure checkout, order tracking, and product reviews.
 
-🚀 Key Features
-Custom User Authentication: Secure login, registration, and user dashboard using a custom Django user model.
+<h3>🚀 Key Features</h3>
+<b>Custom User Authentication:</b> Secure login, registration, and user dashboard using a custom Django user model.
 
-Product Catalog & Categories: Dynamic product listings with category filtering and pagination.
+<b>Product Catalog & Categories:</b> Dynamic product listings with category filtering and pagination.
 
-Product Variations: Support for multiple product attributes (e.g., Size, Color) with precise cart management.
+<b>Product Variations:</b> Support for multiple product attributes (e.g., Size, Color) with precise cart management.
 
-Smart Shopping Cart: Session-based cart functionality with quantity adjustments and real-time subtotal/tax calculations.
+<b>Smart Shopping Cart:</b> Session-based cart functionality with quantity adjustments and real-time subtotal/tax calculations.
 
-Search Functionality: Keyword-based search across product names and descriptions.
+<b>Search Functionality:</b> Keyword-based search across product names and descriptions.
 
-Secure Checkout & Orders:
+<b>Secure Checkout & Orders:</b> 
+<ul>
+<li>Generation of unique order numbers and transaction IDs.</li>
 
-Integration with PayPal Payment Gateway for secure transaction processing.
+<li>Historical price freezing (saves the exact price of an item at the moment of checkout).</li>
 
-Generation of unique order numbers and transaction IDs.
+<li>Post-checkout visual invoices and order history.</li>
+</ul>
 
-Historical price freezing (saves the exact price of an item at the moment of checkout).
+<b>Rating & Reviews:</b> Users can leave star ratings and text reviews for products they have purchased.
 
-Post-checkout visual invoices and order history.
+<b>Admin Dashboard:</b> Powerful Django admin interface to manage inventory, categories, orders, and users.
 
-Rating & Reviews: Users can leave star ratings and text reviews for products they have purchased.
+<h3>🛠️ Tech Stack</h3>
+<b>Backend:</b> Python 3, Django
 
-Admin Dashboard: Powerful Django admin interface to manage inventory, categories, orders, and users.
+<b>Frontend:</b> HTML5, CSS3, Bootstrap (Responsive UI)
+
+<b>Database:</b> SQLite (Development) / PostgreSQL (Production ready)
