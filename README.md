@@ -1,4 +1,4 @@
-GreatKart 🛒
+<h1>GreatKart 🛒</h1>
 GreatKart is a fully functional, feature-rich e-commerce web application built using Python and Django. It provides a complete shopping experience from product browsing and cart management to secure checkout, order tracking, and product reviews.
 
 🚀 Key Features
