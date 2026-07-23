@@ -32,6 +32,65 @@ GreatKart is a fully functional, feature-rich e-commerce web application built u
 
 <b>Database:</b> SQLite (Development) / PostgreSQL (Production ready)
 
+## 🚀 Starting the Project & Tracing the Application Flow
+
+When you download this repository, here is exactly how the application boots up, where the code starts executing, and how the internal Django architecture handles user traffic:
+
+### Step 1: Booting Up the Server (The CLI Entry Point)
+To start the project locally, open your terminal inside the root folder, install the required packages, and execute Django's command-line utility:
+
+```bash
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+* **What happens behind the scenes:** `manage.py` is the primary trigger. It loads the master configuration from `GreatKart/settings.py`, connects to the database (`db.sqlite3` or PostgreSQL), and initializes the global middlewares and custom context processors.
+
+---
+
+### Step 2: The First Web Request (The HTTP Entry Point)
+Once the server is running, navigating to `http://127.0.0.1:8000/` in a web browser triggers the core application flow:
+
+1. **The Master Traffic Controller (`GreatKart/urls.py`):** Every incoming HTTP request hits this root URL configuration first. Because you are visiting the homepage (`""`), it routes traffic directly to the global `views.home` function located in `GreatKart/views.py`.
+2. **The Core View Logic (`GreatKart/views.py`):** The `home` function acts as the initial data coordinator. It queries the `store` app's database model (`Product.objects.filter(is_available=True)`) to fetch all active products currently in stock.
+3. **Global Context Injection:** Before sending HTML to the browser, Django automatically runs custom context processors (`carts/context_processors.py` and `category/context_processors.py`) to inject the live shopping cart item count and category navigation links into the session.
+4. **Rendering the Frontend:** The combined database queries and session data are packaged and rendered through `templates/store/home.html`.
+
+---
+
+### Step 3: Branching Out (The User Journey Flow)
+From the homepage, the application flow branches into specific Django apps depending on the user's actions:
+
+```text
+[Homepage Rendered] 
+       │
+       ├───► Click Category / Search ──────► [store app] Queries database & filters catalog
+       │
+       ├───► Click "Add to Cart" ──────────► [carts app] Generates session ID & updates quantities
+       │
+       ├───► Click "Proceed to Checkout" ──► [accounts app] Intercepts guest to enforce Login/Register
+       │
+       └───► Submit Payment ───────────────► [orders app] Freezes price, verifies PayPal & prints invoice
+```
+
+* **Exploring the Catalog (`store/`):** Clicking a product link sends its slug URL to `store/urls.py`, triggering `store/views.product_detail`. This view fetches variation options (sizes/colors) and pulls approved customer reviews from `models.ReviewRating`.
+* **Managing the Shopping Bag (`carts/`):** Clicking "Add to Cart" routes to `carts/views.add_cart`. If the user is logged out, the system assigns a unique browser cookie (`session_key`) to track their items. When they log in later, the custom authentication backend automatically merges those session items into their permanent account cart.
+* **Securing Checkout & Financials (`orders/`):** When initiating payment, `orders/views.place_order` generates a time-stamped order number and locks in the final price. Upon receiving a verified success payload from PayPal, `orders/views.payments` marks the transaction complete, saves the historical price history, and renders the final printable invoice.
+
+---
+
+## 🏗️ Developer Guide: Navigating the Codebase
+
+This project strictly follows Django's **MVT (Model-View-Template)** architecture.
+
+### 🚀 Project Entry Points
+* **Terminal/CLI:** `manage.py` is the entry point for all local development commands (e.g., running the server, making migrations).
+* **HTTP Requests:** `GreatKart/urls.py` acts as the root traffic controller, catching all user requests and routing them to the appropriate app.
+* **Production:** `GreatKart/wsgi.py` serves as the entry point for production web servers (like Gunicorn) to communicate with the application.
+
+---
+
 <h3>📂Complete Project File Structure</h3>
 
 Below is the complete directory tree of the GreatKart e-commerce platform, illustrating the separation of Django apps, static assets, media storage, and HTML templates:
