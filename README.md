@@ -32,6 +32,37 @@ GreatKart is a fully functional, feature-rich e-commerce web application built u
 
 <b>Database:</b> SQLite (Development) / PostgreSQL (Production ready)
 
+## 📸 Working Project Screenshots & Feature Walkthrough
+
+*(Note: Save your screenshot images inside a folder named `screenshots/` in your root repository directory so these images render automatically).*
+
+### 1. Storefront Homepage & Category Navigation
+<img src="screenshots/homepage.jpeg" alt="GreatKart Homepage" width="800">
+<br>
+*Features dynamic product cards, category filtering in the navigation bar, and keyword search functionality.*
+
+### 2. Product Detail Page & Variation Selection
+<img src="screenshots/product_detail.jpeg" alt="Product Detail Page" width="800">
+<br>
+*Shoppers can select specific variations (Size, Color), view real-time stock availability, and check average star ratings.*
+
+### 3. Interactive Shopping Cart
+<img src="screenshots/cart.jpeg" alt="Shopping Cart" width="800">
+<br>
+*Session-based cart management allowing users to adjust item quantities, remove products, and view real-time tax and subtotal calculations.*
+
+### 4. Checkout & PayPal Payment Integration
+<img src="screenshots/checkout.jpeg" alt="Checkout and Payment" width="800">
+<br>
+*Seamless address capture combined with a secure, sandbox-tested PayPal payment gateway integration.*
+
+### 5. Order Generation & Printable Invoice
+<img src="screenshots/invoice.jpeg" alt="Order Invoice" width="800">
+<br>
+*Upon successful payment, the app freezes the purchase price, generates a unique transaction ID, and renders a clean, printable tax invoice.*
+
+---
+
 ## 🚀 Starting the Project & Tracing the Application Flow
 
 When you download this repository, here is exactly how the application boots up, where the code starts executing, and how the internal Django architecture handles user traffic:
